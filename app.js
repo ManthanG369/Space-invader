@@ -7,7 +7,9 @@ let invaderId;
 let laserId;
 let goingRight = true;
 let aliensRemoved = [];
-let results=0
+let results = 0
+
+//creating grid
 for (let i = 0; i < 225; i++) {
   const square = document.createElement("div");
   grid.appendChild(square);
@@ -20,6 +22,8 @@ const alienInvaders = [
   32, 33, 34, 35, 36, 37, 38, 39,
 ];
 
+
+//adding invader in grid
 function draw() {
     for (let i = 0; i < alienInvaders.length; i++) {
         if (!aliensRemoved.includes(i)) {
@@ -30,6 +34,8 @@ function draw() {
 
 draw();
 
+
+//removing invader
 function remove() {
   for (let i = 0; i < alienInvaders.length; i++) {
     squares[alienInvaders[i]].classList.remove("invader");
@@ -38,6 +44,8 @@ function remove() {
 
 squares[currentShooterIndex].classList.add("shooter");
 
+
+////shooting alienInvaders
 function moveShooter(e) {
   squares[currentShooterIndex].classList.remove("shooter");
   switch (e.key) {
@@ -60,7 +68,18 @@ function moveInvaders() {
     alienInvaders[alienInvaders.length - 1] % width === width - 1;
   remove();
   if (rightEdge && goingRight) {
-    for (let i = 0; i < alienInvaders.length; i++) {
+      for (let i = 0; i < alienInvaders.length; i++) {
+          if (
+            squares[currentShooterIndex].classList.contains(
+              "invader",
+              "shooter"
+            )
+          ) {
+            // console.log('game over')
+            resultsDisplay.innerHTML = "GAME OVER";
+            clearInterval(invaderId);
+            clearInterval(laserId);
+          }
       alienInvaders[i] += width + 1;
       direction = -1;
       goingRight = false;
@@ -68,7 +87,15 @@ function moveInvaders() {
   }
 
   if (leftEdge && !goingRight) {
-    for (let i = 0; i < alienInvaders.length; i++) {
+      for (let i = 0; i < alienInvaders.length; i++) {
+         if (
+           squares[currentShooterIndex].classList.contains("invader", "shooter")
+         ) {
+           // console.log('game over')
+           resultsDisplay.innerHTML = "GAME OVER";
+           clearInterval(invaderId);
+           clearInterval(laserId);
+         }
       alienInvaders[i] += width - 1;
       direction = 1;
       goingRight = true;
