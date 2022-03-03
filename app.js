@@ -4,6 +4,7 @@ let currentShooterIndex = 202;
 let width = 15;
 let direction = 1;
 let invaderId;
+let laserId;
 let goingRight = true;
 let aliensRemoved = [];
 let results=0
@@ -82,7 +83,8 @@ function moveInvaders() {
   if (squares[currentShooterIndex].classList.contains("invader", "shooter")) {
     // console.log('game over')
     resultsDisplay.innerHTML = "GAME OVER";
-    clearInterval(invaderId);
+      clearInterval(invaderId);
+      clearInterval(laserId);
   }
 
   for (let i = 0; i < alienInvaders; i++) {
@@ -96,7 +98,7 @@ function moveInvaders() {
     if (aliensRemoved.length === alienInvaders.length) {
         resultsDisplay.innerHTML = "You Win"
         clearInterval(invaderId)
-        clearInterval(laserId);
+      
     }
 }
 invaderId = setInterval(moveInvaders, 400);
@@ -104,31 +106,43 @@ invaderId = setInterval(moveInvaders, 400);
 function shoot(e) {
   let laserId;
   let currentLaserIndex = currentShooterIndex;
-  function moveLaser() {
-    squares[currentLaserIndex].classList.remove("laser");
-    currentLaserIndex -= width;
-      squares[currentLaserIndex].classList.add("laser");
-      
+    function moveLaser() {
+        if (currentLaserIndex < 0) {
+            clearInterval(laserId)
+            return
+        } else {
+             squares[currentLaserIndex].classList.remove("laser");
+             currentLaserIndex -= width;
+             squares[currentLaserIndex].classList.add("laser");
+        }
+       
+  
+        
       if (squares[currentLaserIndex].classList.contains('invader')) {
           squares[currentLaserIndex].classList.remove("laser");
           squares[currentLaserIndex].classList.remove("invader");
           squares[currentLaserIndex].classList.add("boom");
           setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 300)
           clearInterval(laserId)
-
-
           const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
           aliensRemoved.push(alienRemoved)
           results++;
           resultsDisplay.innerHTML = results;  
         
       }
+
+      
+    
   }
 
   switch (e.key) {
     case "ArrowUp":
-      laserId = setInterval(moveLaser, 100);
-  }
+          laserId = setInterval(moveLaser, 100);     
+    }
+    
+    
 }
 
-document.addEventListener("keydown", shoot);
+
+    document.addEventListener("keydown", shoot);
+
