@@ -31,27 +31,24 @@ p{
 .invader{
     /* background-color: purple; */
     border-radius: 10px;
-    background-image: url("../space-invader/imgages/ufo.png");
+    background-image: url("./imgages/ufo.png");
     background-size: cover;
 }
 
 .shooter{
     /* background-color: green; */
 
-    background-image: url("../space-invader/imgages/battleship.png");
+    background-image: url("./imgages/battleship.png");
     background-size: cover;
 }
 
 .laser{
-     background-color: red;
-      background-size: 30%; 
-      /* width: 17px !important;
-     height: 17px !important;  */
-     border-radius: 50%;
+   background-image: url("./imgages/ellipsis.png");
+    background-size: cover;
 }
 
 .boom{
-    background-image: url("../space-invader/imgages/explosion.png");
+    background-image: url("./imgages/explosion.png");
     background-size: cover;
     /* border-radius: 50%; */
 }
