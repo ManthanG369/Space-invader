@@ -10,9 +10,10 @@
     border: solid black 2px;
     display: flex;
     flex-wrap: wrap;
+    background-color: black;
 }
 body{
-    background-color: #0083ff37;
+    background-color: #3f6bb55c;
 }
 h1 ,p{
     width: max-content;
@@ -28,19 +29,43 @@ p{
 }
 
 .invader{
-    background-color: purple;
+    /* background-color: purple; */
     border-radius: 10px;
+    background-image: url("../space-invader/imgages/ufo.png");
+    background-size: cover;
 }
 
 .shooter{
-    background-color: green;
-    
+    /* background-color: green; */
+
+    background-image: url("../space-invader/imgages/battleship.png");
+    background-size: cover;
 }
 
 .laser{
-     background-color: orange;
+     background-color: red;
+      background-size: 30%; 
+      /* width: 17px !important;
+     height: 17px !important;  */
+     border-radius: 50%;
 }
 
 .boom{
-    background-color: red;
+    background-image: url("../space-invader/imgages/explosion.png");
+    background-size: cover;
+    /* border-radius: 50%; */
 }
+
+.details{
+    text-align: center;
+    width: fit-content;
+    
+    margin: 1rem auto;
+}
+li{
+    text-align: start;
+    margin-top: 1rem;
+}
+
+
+
